@@ -110,13 +110,14 @@ $iheight =330;
 $iwidth = 1063;
 
 
+
 $cx = $lon;
 $cy = $lat;
  
 $dx = $cx - $bxo;
 $dy = $cy - $byo;
 
-
+  $log->addWarning("x ${cx}  y ${cy} \n");
 
 $px = $dx / ($bxc - $bxo) * $iwidth;
 
