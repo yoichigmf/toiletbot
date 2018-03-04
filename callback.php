@@ -116,9 +116,9 @@ foreach ($events as $event) {
      
      
            $timeout = "200";
-     $log->addWarning("url  ${turl}\n");
+     $log->addWarning("url  ${tgurl}\n");
 
-       $retar = getApiDataCurl($gturl, $timeout );
+       $retar = getApiDataCurl($tgurl, $timeout );
        
        if ( count($retar) == 0 {
         $bot->replyText($event->getReplyToken(), "位置情報を送ると近くのトイレを探します  line://nv/location または住所を入力して下さい ${tgText}");
