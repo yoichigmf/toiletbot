@@ -36,7 +36,10 @@ foreach ($events as $event) {
     
         $log->addWarning("location event event!\n");
 
-        $address = $event->{"address"};
+        $address = $event->getAddress();
+        
+        $lat = $event->getLatitude();
+        $lon = $event->getLongitude();
         
         
         
