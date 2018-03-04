@@ -100,6 +100,8 @@ function  GetToiletIndex( $lat, $lon ) {
 //  iwidth   イメージ幅
 //  iheight  イメージ高さ
 
+global $log;
+
 $bxo = 139.2630463;
 $byo = 35.58720779;
 $bxc =  35.8024559;
@@ -120,10 +122,15 @@ $px = $dx / ($bxc - $bxo) * $iwidth;
 
 $py = $iheight - ( $dy - ( $byc - $byo ) * $iheight );
 
+$px = round( $px );
+$py = round( $py );
+
+
 $turl = "http://tk2-207-13336.vs.sakura.ne.jp/geoserver/toilet/wms?service=WMS&version=1.1.0&request=GetFeatureInfo&layers=toilet:boronoi&query_layers=toilet:boronoi&styles=&bbox=139.263046264648,35.5872077941895,139.956756591797,35.8024559020996&width=1063&height=330&srs=EPSG:4326&info_format=application/json&x=${px}&y=${py}";
 
 
   $timeout = "200";
+  $log->addWarning("url  ${turl}\n");
 
    $retar = getApiDataCurl($turl, $timeout );
    
