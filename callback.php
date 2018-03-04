@@ -41,7 +41,9 @@ foreach ($events as $event) {
         $lat = $event->getLatitude();
         $lon = $event->getLongitude();
         
+        $retar = GetToiletIndex( $lat, $lon );
         
+        $log->addWarning($retar);
         
         $bot->replyText($event->getReplyToken(), "location event ${address}");
      //  firstmessage( $bot, $event,0);
@@ -84,6 +86,50 @@ foreach ($events as $event) {
    }
 
 
+//  緯度経度情報から近隣トイレのインデックス情報を返す
+
+function  GetToiletIndex( $lat, $lon ) {
+
+// cx 入力  経度
+/  cy 入力  緯度
+
+//  bxo ボックス　緯度　最小値
+//  byo ボックス　経度　最小値
+//  bxc ボックス　緯度　最大値 
+//  byc ボックス　経度　最大値
+//  iwidth   イメージ幅
+//  iheight  イメージ高さ
+
+$bxo = 139.2630463;
+$byo = 35.58720779;
+$bxc =  35.8024559;
+$byc = 139.9567566;
+$iheight =330;
+$iwidth = 1063;
+
+
+$cx = $lon;
+$cy = $lat;
+ 
+$dx = $cx - $bxo;
+$dy = $cy - $byo;
+
+
+
+$px = $dx / ($bxc - $bxo) * $iwidth;
+
+$py = $iheight - ( $dy - ( $byc - $byo ) * $iheight );
+
+$turl = "http://tk2-207-13336.vs.sakura.ne.jp/geoserver/toilet/wms?service=WMS&version=1.1.0&request=GetFeatureInfo&layers=toilet:boronoi&query_layers=toilet:boronoi&styles=&bbox=139.263046264648,35.5872077941895,139.956756591797,35.8024559020996&width=1063&height=330&srs=EPSG:4326&info_format=application/json&x=${px}&y=${py}";
+
+
+  $timeout = "200";
+
+   $retar = getApiDataCurl($turl, $timeout );
+   
+   return $retar;
+   
+}
 
 //  Google Sheet から列を取得する
 
