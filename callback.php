@@ -38,7 +38,7 @@ foreach ($events as $event) {
          continue;
    }
 
-   if ($event $event instanceof \LINE\LINEBot\Event\MessageEvent\LocationMessage) {  // Location event
+   if ($event instanceof \LINE\LINEBot\Event\MessageEvent\LocationMessage) {  // Location event
    
     
     $log->addWarning("location event event!\n");
