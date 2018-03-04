@@ -1,2 +1,2 @@
 # toiletbot
-chat bot script for search toilet in LINE 
+chat bot script for searching toilet in LINE 
