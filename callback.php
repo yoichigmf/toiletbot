@@ -106,7 +106,7 @@ $bxo = 139.2630463;
 $byo = 35.58720779;
 $byc =  35.8024559;
 $bxc = 139.9567566;
-$iheight =330;
+$iheight = 330;
 $iwidth = 1063;
 
 
@@ -119,9 +119,12 @@ $dy = $cy - $byo;
 
   $log->addWarning("x ${cx}  y ${cy} \n");
 
+ $log->addWarning("dx ${dx}  dy ${dy} \n");
 $px = $dx / ($bxc - $bxo) * $iwidth;
 
 $py = $iheight - ( $dy - ( $byc - $byo ) * $iheight );
+
+$log->addWarning("px ${px}  py ${py} \n");
 
 $px = round( $px );
 $py = round( $py );
