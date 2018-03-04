@@ -43,7 +43,7 @@ foreach ($events as $event) {
         
         $retar = GetToiletIndex( $lat, $lon );
         
-        $log->addWarning($retar);
+        $log->addWarning("\nreturn ->${retar}\n");
         
         $bot->replyText($event->getReplyToken(), "location event ${address}");
      //  firstmessage( $bot, $event,0);
@@ -117,14 +117,14 @@ $cy = $lat;
 $dx = $cx - $bxo;
 $dy = $cy - $byo;
 
-  $log->addWarning("x ${cx}  y ${cy} \n");
+ // $log->addWarning("x ${cx}  y ${cy} \n");
 
- $log->addWarning("dx ${dx}  dy ${dy} \n");
+// $log->addWarning("dx ${dx}  dy ${dy} \n");
 $px = ($dx / ($bxc - $bxo) )* $iwidth;
 
 $py = $iheight -( ( $dy/ ( $byc - $byo )) * $iheight );
 
-$log->addWarning("px ${px}  py ${py} \n");
+//$log->addWarning("px ${px}  py ${py} \n");
 
 $px = round( $px );
 $py = round( $py );
@@ -134,7 +134,7 @@ $turl = "http://tk2-207-13336.vs.sakura.ne.jp/geoserver/toilet/wms?service=WMS&v
 
 
   $timeout = "200";
-  $log->addWarning("url  ${turl}\n");
+//  $log->addWarning("url  ${turl}\n");
 
    $retar = getApiDataCurl($turl, $timeout );
    
