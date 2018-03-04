@@ -43,9 +43,15 @@ foreach ($events as $event) {
         
         $retar = GetToiletIndex( $lat, $lon );
         
+        $ft = $retar["features"];
+        
+        $firstd = $ft[0];
+        
+        $toiletname = $firstd["name"];
+        
         $log->addWarning("\nreturn ->${retar}\n");
         
-        $bot->replyText($event->getReplyToken(), "location event ${address}");
+        $bot->replyText($event->getReplyToken(), "location event ${address}  $toiletname}");
      //  firstmessage( $bot, $event,0);
        continue;
    
