@@ -107,9 +107,27 @@ foreach ($events as $event) {
  
      if ($event instanceof \LINE\LINEBot\Event\MessageEvent\TextMessage) {  //  テキストメッセージの場合
             $tgText=$event->getText();
+            
+            $address = urlencode ( $tgText )
+            
+            $tgurl = "https://msearch.gsi.go.jp/address-search/AddressSearch?q=${address}";
      
-     $bot->replyText($event->getReplyToken(), "位置情報を送ると近くのトイレを探します  line://nv/location または住所を入力して下さい ${tgText}");
+ //    $bot->replyText($event->getReplyToken(), "位置情報を送ると近くのトイレを探します  line://nv/location または住所を入力して下さい ${tgText}");
      
+     
+           $timeout = "200";
+     $log->addWarning("url  ${turl}\n");
+
+       $retar = getApiDataCurl($gturl, $timeout );
+       
+       if ( count($retar) == 0 {
+        $bot->replyText($event->getReplyToken(), "位置情報を送ると近くのトイレを探します  line://nv/location または住所を入力して下さい ${tgText}");
+          }
+          else  {
+          $bot->replyText($event->getReplyToken(), "位置情報を送ると近くのトイレを探します  line://nv/location または住所を入力して下さい ${tgText}");
+          
+          }
+       
           continue;
           
         }
