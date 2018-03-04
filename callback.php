@@ -32,7 +32,7 @@ foreach ($events as $event) {
 
    if ($event instanceof \LINE\LINEBot\Event\MessageEvent\TextMessage) {  //  text message edit
    
-        $query = $event->getPostbackData();
+        $query = $even;
         $bot->replyText($event->getReplyToken(), $query);
 
          continue;
