@@ -34,9 +34,12 @@ foreach ($events as $event) {
    if ($event instanceof \LINE\LINEBot\Event\MessageEvent\LocationMessage) {  // Location event
    
     
-    $log->addWarning("location event event!\n");
+        $log->addWarning("location event event!\n");
 
-        $bot->replyText($event->getReplyToken(), "location event");
+        $address = $event->address;
+        
+        
+        $bot->replyText($event->getReplyToken(), "location event $address}");
      //  firstmessage( $bot, $event,0);
        continue;
    
@@ -72,7 +75,7 @@ foreach ($events as $event) {
     
  
    
-        $bot->replyText($event->getReplyToken(), "other event");
+        $bot->replyText($event->getReplyToken(), "位置情報を送ると近くのトイレを探します  line://nv/location ");
         
    }
 
