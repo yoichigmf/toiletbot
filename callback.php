@@ -36,10 +36,11 @@ foreach ($events as $event) {
     
         $log->addWarning("location event event!\n");
 
-        $address = $event->address;
+        $address = $event->{"address"};
         
         
-        $bot->replyText($event->getReplyToken(), "location event $address}");
+        
+        $bot->replyText($event->getReplyToken(), "location event ${address}");
      //  firstmessage( $bot, $event,0);
        continue;
    
