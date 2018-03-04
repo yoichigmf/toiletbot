@@ -60,6 +60,13 @@ foreach ($events as $event) {
         
         
         $toiletname = $properties["name"];
+        $sheetname = $properties["tbname"];
+        
+        $tgid = $properties["kid"];
+        
+      //  "kid":2890,"tbname":"park_barrier_free_wc",
+        
+        
             $log->addWarning("  toiletname ${toiletname}\n");
             
         $bot->replyText($event->getReplyToken(), "location event ${address}  ${toiletname}");
