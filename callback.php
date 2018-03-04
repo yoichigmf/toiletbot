@@ -120,7 +120,7 @@ foreach ($events as $event) {
 
        $retar = getApiDataCurl($tgurl, $timeout );
        
-       if ( count($retar) == 0 {
+       if ( count($retar) == 0) {
         $bot->replyText($event->getReplyToken(), "位置情報を送ると近くのトイレを探します  line://nv/location または住所を入力して下さい ${tgText}");
           }
           else  {
