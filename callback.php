@@ -30,13 +30,6 @@ $score = -1;
 foreach ($events as $event) {
 
 
-   if ($event instanceof \LINE\LINEBot\Event\MessageEvent\TextMessage) {  //  text message edit
-   
-        $query = $even;
-        $bot->replyText($event->getReplyToken(), $query);
-
-         continue;
-   }
 
    if ($event instanceof \LINE\LINEBot\Event\MessageEvent\LocationMessage) {  // Location event
    
@@ -60,10 +53,26 @@ foreach ($events as $event) {
        continue;
    
    }
-    
-   $log->addWarning("not join event \n");
    
-  
+   
+  if (!($event instanceof \LINE\LINEBot\Event\MessageEvent) ||
+      !($event instanceof \LINE\LINEBot\Event\MessageEvent\TextMessage)) {
+      
+      if (!($event instanceof \LINE\LINEBot\Event\PostbackEvent) ) {
+         $bot->replyText($event->getReplyToken(), " event");
+         
+             continue;
+      }
+     else  {
+     
+       $bot->replyText($event->getReplyToken(), "post back event");
+        }
+     
+      }
+    
+ 
+   
+        $bot->replyText($event->getReplyToken(), "other event");
         
    }
 
