@@ -108,7 +108,7 @@ foreach ($events as $event) {
      if ($event instanceof \LINE\LINEBot\Event\MessageEvent\TextMessage) {  //  テキストメッセージの場合
             $tgText=$event->getText();
             
-            $address = urlencode ( $tgText )
+            $address = urlencode ( $tgText );
             
             $tgurl = "https://msearch.gsi.go.jp/address-search/AddressSearch?q=${address}";
      
