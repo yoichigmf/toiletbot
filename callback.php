@@ -55,8 +55,11 @@ foreach ($events as $event) {
         $firstd = $ft[0];
         
             $log->addWarning("  firstd ${firstd}\n");
+            
+        $properties = $firstd["properties"];
         
-        $toiletname = $firstd["name"];
+        
+        $toiletname = $properties["name"];
             $log->addWarning("  toiletname ${toiletname}\n");
             
         $bot->replyText($event->getReplyToken(), "location event ${address}  ${toiletname}");
