@@ -91,7 +91,7 @@ foreach ($events as $event) {
 function  GetToiletIndex( $lat, $lon ) {
 
 // cx 入力  経度
-/  cy 入力  緯度
+//  cy 入力  緯度
 
 //  bxo ボックス　緯度　最小値
 //  byo ボックス　経度　最小値
