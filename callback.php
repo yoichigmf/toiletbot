@@ -30,7 +30,7 @@ $score = -1;
 foreach ($events as $event) {
 
 
-   if ($event instanceof \LINE\LINEBot\Event\MessageEvent\TextMessage) {  //  text message
+   if ($event instanceof \LINE\LINEBot\Event\MessageEvent\TextMessage) {  //  text message edit
    
         $query = $event->getPostbackData();
         $bot->replyText($event->getReplyToken(), $query);
