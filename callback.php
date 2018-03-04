@@ -120,9 +120,9 @@ $dy = $cy - $byo;
   $log->addWarning("x ${cx}  y ${cy} \n");
 
  $log->addWarning("dx ${dx}  dy ${dy} \n");
-$px = $dx / ($bxc - $bxo) * $iwidth;
+$px = ($dx / ($bxc - $bxo) )* $iwidth;
 
-$py = $iheight - ( $dy/ ( $byc - $byo ) * $iheight ));
+$py = $iheight -( ( $dy/ ( $byc - $byo )) * $iheight );
 
 $log->addWarning("px ${px}  py ${py} \n");
 
