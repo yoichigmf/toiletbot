@@ -104,8 +104,18 @@ foreach ($events as $event) {
       }
     
  
+ 
+     if ($event instanceof \LINE\LINEBot\Event\MessageEvent\TextMessage) {  //  テキストメッセージの場合
+            $tgText=$event->getText();
+     
+     $bot->replyText($event->getReplyToken(), "位置情報を送ると近くのトイレを探します  line://nv/location または住所を入力して下さい ${tgText}");
+     
+          continue;
+          
+        }
+     
    
-        $bot->replyText($event->getReplyToken(), "位置情報を送ると近くのトイレを探します  line://nv/location ");
+        $bot->replyText($event->getReplyToken(), "位置情報を送ると近くのトイレを探します  line://nv/location または住所を入力して下さい");
         
    }
 
