@@ -127,10 +127,12 @@ foreach ($events as $event) {
           else  { //  該当住所があった
           
           
-          $geom = $retar["geometry"];
-        $log->addWarning("geom  ${geom}\n");     
+          $fst = $retar[0];
+          
+          $geom = $fst["geometry"];
+          $log->addWarning("geom  ${geom}\n");     
           $coord = $geom["coordinates"];
-        $log->addWarning("coord  ${coord}\n");
+          $log->addWarning("coord  ${coord}\n");
         
                   
           $lon = $coord[0];
