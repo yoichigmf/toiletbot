@@ -212,7 +212,9 @@ $timeout = "200";
     
     $ttext ="近くのトイレ情報";
     
-   
+    $latdef = false;
+    $londef = false;
+    
     foreach ( $tgar as $key => $value ) {
     
       if (is_display( $key )) {
@@ -220,8 +222,9 @@ $timeout = "200";
       if ( $key === "緯度" ) {
       
         $lat = $value;
+        $latdef = true;
         
-        if ( $lat && $lon ) {
+        if ( $latdef & $londef ) {
             $ttext ."\n"."地図:https://maps.gsi.go.jp/#18/${lat}/${lon}/&base=std&ls=std&disp=1&vs=c1j0l0u0t0z0r0f0&d=vl:";
          }
          continue;
@@ -229,9 +232,13 @@ $timeout = "200";
       
       if ( $key === "経度" ) {
       
+         $londef = true;
+      
           $lon = $value;
-          
+             if ( $latdef & $londef  ) {
             $ttext ."\n"."地図:https://maps.gsi.go.jp/#18/${lat}/${lon}/&base=std&ls=std&disp=1&vs=c1j0l0u0t0z0r0f0&d=vl:";
+            }
+            
           continue;
       }
       $ttext = $ttext ."\n". $key .":".$value;
