@@ -41,37 +41,12 @@ foreach ($events as $event) {
         $lat = $event->getLatitude();
         $lon = $event->getLongitude();
         
-        $retar = GetToiletIndex( $lat, $lon );
+        $query = "";
         
-                
-        $log->addWarning("\nreturn ->${retar}\n");
-        
+        $status = SearchToiletData( $bot, $event, $lat, $lon, $query  );
         
         
-        $ft = $retar["features"];
-        
-         $log->addWarning("  ft ${ft}\n");
-        
-        $firstd = $ft[0];
-        
-            $log->addWarning("  firstd ${firstd}\n");
-            
-        $properties = $firstd["properties"];
-        
-        
-        $toiletname = $properties["name"];
-        $sheetname = $properties["tbname"];
-        
-        $tgid = $properties["kid"];
-        
-      //  "kid":2890,"tbname":"park_barrier_free_wc",
-        
-        
-            $log->addWarning("  toiletname ${toiletname}\n");
-            
-        $bot->replyText($event->getReplyToken(), "location event ${address}  ${toiletname}");
-     //  firstmessage( $bot, $event,0);
-       continue;
+ 
    
    }
    
@@ -138,7 +113,7 @@ foreach ($events as $event) {
           $lon = $coord[0];
           $lat = $coord[1];
           
-          
+          $status = SearchToiletData( $bot, $event, $lat, $lon, $query  );         
           
           $bot->replyText($event->getReplyToken(), "位置情報を送ると近くのトイレを探します  line://nv/location または住所を入力して下さい lat ${lat} lon ${lon}  ${tgText}");
           
@@ -152,6 +127,51 @@ foreach ($events as $event) {
         $bot->replyText($event->getReplyToken(), "位置情報を送ると近くのトイレを探します  line://nv/location または住所を入力して下さい");
         
    }
+
+
+function SearchToiletData( $bot, $event, $lat, $lon , $query ) {
+   
+   
+        global  $log;
+
+        
+             
+        $retar = GetToiletIndex( $lat, $lon );
+        
+                
+        $log->addWarning("\nreturn ->${retar}\n");
+        
+        
+        
+        $ft = $retar["features"];
+        
+         $log->addWarning("  ft ${ft}\n");
+        
+        $firstd = $ft[0];
+        
+            $log->addWarning("  firstd ${firstd}\n");
+            
+        $properties = $firstd["properties"];
+        
+        
+        $toiletname = $properties["name"];
+        $sheetname = $properties["tbname"];
+        
+        $tgid = $properties["kid"];
+        
+      //  "kid":2890,"tbname":"park_barrier_free_wc",
+        
+        
+
+        
+        $log->addWarning("  toiletname ${toiletname}\n");
+            
+        $ret = $bot->replyText($event->getReplyToken(), "location event  ${toiletname}");
+   
+         return $ret;
+  }
+         
+         
 
 
 //  緯度経度情報から近隣トイレのインデックス情報を返す
