@@ -213,7 +213,7 @@ $timeout = "200";
     $ttext ="近くのトイレ情報";
     foreach ( $tgar as $key => $value ) {
     
-      if is_display( $key ) {
+      if (is_display( $key )) {
       $ttext = $ttext ."\n". $key .":".$value;
       }
     
