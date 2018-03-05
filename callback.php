@@ -224,8 +224,8 @@ $timeout = "200";
         $lat = $value;
         $latdef = true;
         
-        if ( $latdef & $londef ) {
-            $ttext ."\n"."地図:https://maps.gsi.go.jp/#18/${lat}/${lon}/&base=std&ls=std&disp=1&vs=c1j0l0u0t0z0r0f0&d=vl:";
+        if ( $latdef and $londef ) {
+           $ttext =  $ttext ."\n"."地図:https://maps.gsi.go.jp/#18/${lat}/${lon}/&base=std&ls=std&disp=1&vs=c1j0l0u0t0z0r0f0&d=vl:";
          }
          continue;
       }
@@ -235,8 +235,8 @@ $timeout = "200";
          $londef = true;
       
           $lon = $value;
-             if ( $latdef & $londef  ) {
-            $ttext ."\n"."地図:https://maps.gsi.go.jp/#18/${lat}/${lon}/&base=std&ls=std&disp=1&vs=c1j0l0u0t0z0r0f0&d=vl:";
+             if ( $latdef and $londef  ) {
+            $ttext = $ttext ."\n"."地図:https://maps.gsi.go.jp/#18/${lat}/${lon}/&base=std&ls=std&disp=1&vs=c1j0l0u0t0z0r0f0&d=vl:";
             }
             
           continue;
