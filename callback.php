@@ -159,6 +159,8 @@ function SearchToiletData( $bot, $event, $lat, $lon , $query ) {
         
         $tgid = $properties["kid"];
         
+        $tid = $properties["id"];
+        
       //  "kid":2890,"tbname":"park_barrier_free_wc",
         
         
@@ -166,6 +168,15 @@ function SearchToiletData( $bot, $event, $lat, $lon , $query ) {
          if ( $toiletname ) {
          
      
+    
+     
+            if (( $sheetname == "park_barrier_free_wc" ) || ( $sheetname == " cultural_facilities_barrier_free_wc" ) ) {
+            
+                 $ret =  query_toilet( $bot, $event, $sheetname, $tid);
+                         $ret = $bot->replyText($event->getReplyToken(), "近くのトイレ  ${toiletname}");
+                 return $ret;
+                 }
+                 
             $log->addWarning("  toiletname ${toiletname}\n");
             
             $ret = $bot->replyText($event->getReplyToken(), "近くのトイレ  ${toiletname}");
@@ -181,8 +192,19 @@ function SearchToiletData( $bot, $event, $lat, $lon , $query ) {
          
          }
   }
-         
-         
+         //  Google Spread Sheet にトイレ情報をクエリかける
+function  query_toilet( $bot, $event, $sheetname, $tid) {
+
+
+$turl = "https://script.google.com/macros/s/AKfycbwC3bl1dLdFpS8qqRJJbQbPs9YlzWG_UXiip5XoUzFwUIRyBSqf/exec?action=gettoilet&sheetname=${sheetname&key=${tid}";
+
+$timeout = "200";
+  $log->addWarning("url  ${turl}\n");
+
+   $retar = getApiDataCurl($turl, $timeout );
+   
+   return $retar;
+} 
 
 
 //  緯度経度情報から近隣トイレのインデックス情報を返す
