@@ -212,9 +212,7 @@ $timeout = "200";
     
     $ttext ="近くのトイレ情報";
     
-    var $lat;
-    var $lon;
-    
+   
     foreach ( $tgar as $key => $value ) {
     
       if (is_display( $key )) {
