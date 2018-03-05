@@ -206,7 +206,7 @@ $timeout = "200";
    $retar = getApiDataCurl($turl, $timeout );
    
    
-    $tgar  = $retar[0];
+    $tgar  = $retar["response"];
     
     $log->addWarning("return  ${tgar}\n");
     
