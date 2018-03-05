@@ -212,7 +212,7 @@ $timeout = "200";
     
     $ttext ="近くのトイレ情報";
     foreach ( $tgar as $key => $value ) {
-      $ttext = $ttext ." ". $key .":".$value;
+      $ttext = $ttext ."\n". $key .":".$value;
     
     }
     //$sisetumei = $tgar["施設名"];
