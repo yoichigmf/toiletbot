@@ -196,7 +196,7 @@ function SearchToiletData( $bot, $event, $lat, $lon , $query ) {
 function  query_toilet( $bot, $event, $sheetname, $tid) {
 
 
-$turl = "https://script.google.com/macros/s/AKfycbwC3bl1dLdFpS8qqRJJbQbPs9YlzWG_UXiip5XoUzFwUIRyBSqf/exec?action=gettoilet&sheetname=${sheetname&key=${tid}";
+$turl = "https://script.google.com/macros/s/AKfycbwC3bl1dLdFpS8qqRJJbQbPs9YlzWG_UXiip5XoUzFwUIRyBSqf/exec?action=gettoilet&sheetname=${sheetname}&key=${tid}";
 
 $timeout = "200";
   $log->addWarning("url  ${turl}\n");
