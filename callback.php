@@ -206,9 +206,11 @@ $timeout = "200";
    $retar = getApiDataCurl($turl, $timeout );
    
    
-    $log->addWarning("return  ${retar}\n");
+    $tgar  = $retar[0];
     
-    $toiletname = $retar["トイレ名"];
+    $log->addWarning("return  ${tgar}\n");
+    
+    $toiletname = $tgar["トイレ名"];
     
         $log->addWarning("トイレ名  ${toiletname}\n");
    return $retar;
