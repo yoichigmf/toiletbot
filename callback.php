@@ -211,9 +211,31 @@ $timeout = "200";
     $log->addWarning("return  ${tgar}\n");
     
     $ttext ="近くのトイレ情報";
+    
+    var $lat;
+    var $lon;
+    
     foreach ( $tgar as $key => $value ) {
     
       if (is_display( $key )) {
+      
+      if ( $key === "緯度" ) {
+      
+        $lat = $value;
+        
+        if ( $lat && $lon ) {
+            $ttext ."\n"."地図:https://maps.gsi.go.jp/#18/${lat}/${lon}/&base=std&ls=std&disp=1&vs=c1j0l0u0t0z0r0f0&d=vl:";
+         }
+         continue;
+      }
+      
+      if ( $key === "経度" ) {
+      
+          $lon = $value;
+          
+            $ttext ."\n"."地図:https://maps.gsi.go.jp/#18/${lat}/${lon}/&base=std&ls=std&disp=1&vs=c1j0l0u0t0z0r0f0&d=vl:";
+          continue;
+      }
       $ttext = $ttext ."\n". $key .":".$value;
       }
     
