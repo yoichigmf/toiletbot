@@ -210,9 +210,17 @@ $timeout = "200";
     
     $log->addWarning("return  ${tgar}\n");
     
-    $toiletname = $tgar["トイレ名"];
+    $ttext ="近くのトイレ情報";
+    foreach ( $tgar as $key => $value ) {
+      $ttext = $ttext ." ", $key .":".$value;
     
-        $log->addWarning("トイレ名  ${toiletname}\n");
+    }
+    //$sisetumei = $tgar["施設名"];
+   // $toiletname = $tgar["トイレ名"];
+ 
+        $log->addWarning($ttext);
+        
+            $ret = $bot->replyText($event->getReplyToken(), $ttext);
    return $retar;
 } 
 
