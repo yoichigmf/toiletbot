@@ -174,7 +174,8 @@ function SearchToiletData( $bot, $event, $lat, $lon , $query ) {
             }
             
          else {
-            $ret = $bot->replyText($event->getReplyToken(), "近くのトイレ情報がみつかりません。位置情報を送ると近くのトイレを探します  line://nv/location または住所を入力して下さい"");
+            $ret = $bot->replyText($event->getReplyToken(),
+             "近くのトイレ情報がみつかりません。位置情報を送ると近くのトイレを探します  line://nv/location または住所を入力して下さい");
    
             return $ret;         
          
