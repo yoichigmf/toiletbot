@@ -129,9 +129,9 @@ foreach ($events as $event) {
           
           $geom = $retar["geometry"];
           
-          $cood = $geom["coordinates"];
+          $coord = $geom["coordinates"];
           
-          $lon =$coord[0];
+          $lon = $coord[0];
           $lat = $coord[1];
           
           
