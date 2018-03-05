@@ -149,7 +149,7 @@ function SearchToiletData( $bot, $event, $lat, $lon , $query ) {
         
         $firstd = $ft[0];
         
-            $log->addWarning("  firstd ${firstd}\n");
+        $log->addWarning("  firstd ${firstd}\n");
             
         $properties = $firstd["properties"];
         
@@ -173,7 +173,8 @@ function SearchToiletData( $bot, $event, $lat, $lon , $query ) {
             if (( $sheetname == "park_barrier_free_wc" ) || ( $sheetname == " cultural_facilities_barrier_free_wc" ) ) {
             
                  $ret =  query_toilet( $bot, $event, $sheetname, $tid);
-                         $ret = $bot->replyText($event->getReplyToken(), "近くのトイレ  ${toiletname}");
+                 
+                 $ret = $bot->replyText($event->getReplyToken(), "近くのトイレ  ${toiletname}");
                  return $ret;
                  }
                  
@@ -204,6 +205,12 @@ $timeout = "200";
 
    $retar = getApiDataCurl($turl, $timeout );
    
+   
+    $log->addWarning("return  ${retar}\n");
+    
+    $toiletname = $retar["トイレ名"];
+    
+        $log->addWarning("トイレ名  ${toiletname}\n");
    return $retar;
 } 
 
