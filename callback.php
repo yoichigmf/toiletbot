@@ -128,9 +128,11 @@ foreach ($events as $event) {
           
           
           $geom = $retar["geometry"];
-          
+        $log->addWarning("geom  ${geom}\n");     
           $coord = $geom["coordinates"];
-          
+        $log->addWarning("coord  ${coord}\n");
+        
+                  
           $lon = $coord[0];
           $lat = $coord[1];
           
