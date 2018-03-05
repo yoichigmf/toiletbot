@@ -195,6 +195,7 @@ function SearchToiletData( $bot, $event, $lat, $lon , $query ) {
          //  Google Spread Sheet にトイレ情報をクエリかける
 function  query_toilet( $bot, $event, $sheetname, $tid) {
 
+global $log;
 
 $turl = "https://script.google.com/macros/s/AKfycbwC3bl1dLdFpS8qqRJJbQbPs9YlzWG_UXiip5XoUzFwUIRyBSqf/exec?action=gettoilet&sheetname=${sheetname}&key=${tid}";
 
