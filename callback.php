@@ -212,7 +212,10 @@ $timeout = "200";
     
     $ttext ="近くのトイレ情報";
     foreach ( $tgar as $key => $value ) {
+    
+      if is_display( $key ) {
       $ttext = $ttext ."\n". $key .":".$value;
+      }
     
     }
     //$sisetumei = $tgar["施設名"];
@@ -223,6 +226,33 @@ $timeout = "200";
             $ret = $bot->replyText($event->getReplyToken(), $ttext);
    return $retar;
 } 
+
+function is_display( $keyt ) {
+
+    if ( empty( $keyt ) ) {
+         return false;
+         }
+    $notdisplay= array(
+        "id",        
+        "Baiduspider",      
+        "施設通し番号",       
+        "施設内トイレ通し番号",        
+        "座標系"
+    );
+     foreach ($notdisplay as $keyword) {
+        if ($keyt === $keyword) {
+            return false;
+        }
+    }
+        
+         
+
+    return true;
+}
+
+
+
+
 
 
 //  緯度経度情報から近隣トイレのインデックス情報を返す
