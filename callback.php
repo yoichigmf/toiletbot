@@ -163,12 +163,22 @@ function SearchToiletData( $bot, $event, $lat, $lon , $query ) {
         
         
 
-        
-        $log->addWarning("  toiletname ${toiletname}\n");
+         if ( $toiletname ) {
+         
+     
+            $log->addWarning("  toiletname ${toiletname}\n");
             
-        $ret = $bot->replyText($event->getReplyToken(), "location event  ${toiletname}");
+            $ret = $bot->replyText($event->getReplyToken(), "近くのトイレ  ${toiletname}");
    
-         return $ret;
+            return $ret;
+            }
+            
+         else {
+            $ret = $bot->replyText($event->getReplyToken(), "近くのトイレ情報がみつかりません。位置情報を送ると近くのトイレを探します  line://nv/location または住所を入力して下さい"");
+   
+            return $ret;         
+         
+         }
   }
          
          
