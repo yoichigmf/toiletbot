@@ -121,10 +121,22 @@ foreach ($events as $event) {
        $retar = getApiDataCurl($tgurl, $timeout );
        
        if ( count($retar) == 0) {
+       //    住所にデータがない  or 文字列が住所ではない
         $bot->replyText($event->getReplyToken(), "位置情報を送ると近くのトイレを探します  line://nv/location または住所を入力して下さい ${tgText}");
           }
-          else  {
-          $bot->replyText($event->getReplyToken(), "位置情報を送ると近くのトイレを探します  line://nv/location または住所を入力して下さい ${tgText}");
+          else  { //  該当住所があった
+          
+          
+          $geom = $retar["geometry"];
+          
+          $cood = $geom["coordinates"];
+          
+          $lon =$coord[0];
+          $lat = $coord[1];
+          
+          
+          
+          $bot->replyText($event->getReplyToken(), "位置情報を送ると近くのトイレを探します  line://nv/location または住所を入力して下さい lat ${lat} lon ${lon}  ${tgText}");
           
           }
        
