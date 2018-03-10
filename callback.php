@@ -177,6 +177,16 @@ function SearchToiletData( $bot, $event, $lat, $lon , $query ) {
            
            }
            
+           
+           if ( $sheetname == "taito_public_toilet" ) {  //  台東区データ
+           
+                $ret =  query_toilet( $bot, $event, $sheetname, $tid);
+                 
+                 $ret = $bot->replyText($event->getReplyToken(), "近くのトイレ  ${toiletname}");
+                 return $ret;
+           
+           }
+           
      
             if (( $sheetname == "park_barrier_free_wc" ) || ( $sheetname == " cultural_facilities_barrier_free_wc" ) ) {
             
