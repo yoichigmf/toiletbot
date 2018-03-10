@@ -139,17 +139,17 @@ function SearchToiletData( $bot, $event, $lat, $lon , $query ) {
         $retar = GetToiletIndex( $lat, $lon );
         
                 
-        $log->addWarning("\nreturn ->${retar}\n");
+        //$log->addWarning("\nreturn ->${retar}\n");
         
         
         
         $ft = $retar["features"];
         
-         $log->addWarning("  ft ${ft}\n");
+        // $log->addWarning("  ft ${ft}\n");
         
         $firstd = $ft[0];
         
-            $log->addWarning("  firstd ${firstd}\n");
+      //  $log->addWarning("  firstd ${firstd}\n");
             
         $properties = $firstd["properties"];
         
@@ -159,6 +159,8 @@ function SearchToiletData( $bot, $event, $lat, $lon , $query ) {
         
         $tgid = $properties["kid"];
         
+        $tid = $properties["id"];
+        
       //  "kid":2890,"tbname":"park_barrier_free_wc",
         
         
@@ -166,6 +168,24 @@ function SearchToiletData( $bot, $event, $lat, $lon , $query ) {
          if ( $toiletname ) {
          
      
+           if ( $sheetname == "shinagawa_toilet" ) {  //  品川区データ
+           
+                $ret =  query_toilet( $bot, $event, $sheetname, $tid);
+                 
+                 $ret = $bot->replyText($event->getReplyToken(), "近くのトイレ  ${toiletname}");
+                 return $ret;
+           
+           }
+           
+     
+            if (( $sheetname == "park_barrier_free_wc" ) || ( $sheetname == " cultural_facilities_barrier_free_wc" ) ) {
+            
+                 $ret =  query_toilet( $bot, $event, $sheetname, $tid);
+                 
+                 $ret = $bot->replyText($event->getReplyToken(), "近くのトイレ  ${toiletname}");
+                 return $ret;
+                 }
+                 
             $log->addWarning("  toiletname ${toiletname}\n");
             
             $ret = $bot->replyText($event->getReplyToken(), "近くのトイレ  ${toiletname}");
@@ -181,8 +201,93 @@ function SearchToiletData( $bot, $event, $lat, $lon , $query ) {
          
          }
   }
+         //  Google Spread Sheet にトイレ情報をクエリかける
+function  query_toilet( $bot, $event, $sheetname, $tid) {
+
+global $log;
+
+$turl = "https://script.google.com/macros/s/AKfycbwC3bl1dLdFpS8qqRJJbQbPs9YlzWG_UXiip5XoUzFwUIRyBSqf/exec?action=gettoilet&sheetname=${sheetname}&key=${tid}";
+
+$timeout = "200";
+  $log->addWarning("url  ${turl}\n");
+
+   $retar = getApiDataCurl($turl, $timeout );
+   
+   
+    $tgar  = $retar["response"];
+    
+    $log->addWarning("return  ${tgar}\n");
+    
+    $ttext ="近くのトイレ情報";
+    
+    $latdef = false;
+    $londef = false;
+    
+    foreach ( $tgar as $key => $value ) {
+    
+      if (is_display( $key )) {
+      
+      if ( $key === "緯度" ) {
+      
+        $lat = $value;
+        $latdef = true;
+        
+        if ( $latdef and $londef ) {
+           $ttext =  $ttext ."\n"."地図:https://maps.gsi.go.jp/#16/${lat}/${lon}/&base=std&ls=std&disp=1&vs=c1j0l0u0t0z0r0f0";
+         }
+         continue;
+      }
+      
+      if ( $key === "経度" ) {
+      
+         $londef = true;
+      
+          $lon = $value;
+             if ( $latdef and $londef  ) {
+            $ttext = $ttext ."\n"."地図:https://maps.gsi.go.jp/#16/${lat}/${lon}/&base=std&ls=std&disp=1&vs=c1j0l0u0t0z0r0f0";
+            }
+            
+          continue;
+      }
+      $ttext = $ttext ."\n". $key .":".$value;
+      }
+    
+    }
+    //$sisetumei = $tgar["施設名"];
+   // $toiletname = $tgar["トイレ名"];
+ 
+        $log->addWarning($ttext);
+        
+            $ret = $bot->replyText($event->getReplyToken(), $ttext);
+   return $retar;
+} 
+
+function is_display( $keyt ) {
+
+    if ( empty( $keyt ) ) {
+         return false;
+         }
+    $notdisplay= array(
+        "id",        
+        "Baiduspider",      
+        "施設通し番号",       
+        "施設内トイレ通し番号",        
+        "座標系"
+    );
+     foreach ($notdisplay as $keyword) {
+        if ($keyt === $keyword) {
+            return false;
+        }
+    }
+        
          
-         
+
+    return true;
+}
+
+
+
+
 
 
 //  緯度経度情報から近隣トイレのインデックス情報を返す
