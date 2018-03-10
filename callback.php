@@ -242,6 +242,8 @@ $timeout = "200";
     
     $latdef = false;
     $londef = false;
+  //  $vstext = "c1j0l0u0t0z0r0f0";    
+    $vstext = "c1j0h0k0l0u0t0z0r0s0f1";
     
     foreach ( $tgar as $key => $value ) {
     
@@ -253,7 +255,7 @@ $timeout = "200";
         $latdef = true;
         
         if ( $latdef and $londef ) {
-           $ttext =  $ttext ."\n"."地図:https://maps.gsi.go.jp/#16/${lat}/${lon}/&base=std&ls=std&disp=1&vs=c1j0l0u0t0z0r0f0";
+           $ttext =  $ttext ."\n"."地図:https://maps.gsi.go.jp/#16/${lat}/${lon}/&base=std&ls=std&disp=1&vs=${vstext}";
          }
          continue;
       }
@@ -264,7 +266,7 @@ $timeout = "200";
       
           $lon = $value;
              if ( $latdef and $londef  ) {
-            $ttext = $ttext ."\n"."地図:https://maps.gsi.go.jp/#16/${lat}/${lon}/&base=std&ls=std&disp=1&vs=c1j0l0u0t0z0r0f0";
+            $ttext = $ttext ."\n"."地図:https://maps.gsi.go.jp/#16/${lat}/${lon}/&base=std&ls=std&disp=1&vs=${vstext}";
             }
             
           continue;
