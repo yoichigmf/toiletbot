@@ -354,9 +354,10 @@ $py = $iheight -( ( $dy/ ( $byc - $byo )) * $iheight );
 
 $px = round( $px );
 $py = round( $py );
+//$turl = "http://tk2-207-13336.vs.sakura.ne.jp/geoserver/toilet/wms?service=WMS&version=1.1.0&request=GetFeatureInfo&layers=toilet:boronoi&query_layers=toilet:boronoi&styles=&bbox=139.263046264648,35.5872077941895,139.956756591797,35.8024559020996&width=1063&height=330&srs=EPSG:4326&info_format=application/json&x=${px}&y=${py}";
 
 
-$turl = "http://tk2-207-13336.vs.sakura.ne.jp/geoserver/toilet/wms?service=WMS&version=1.1.0&request=GetFeatureInfo&layers=toilet:boronoi&query_layers=toilet:boronoi&styles=&bbox=139.263046264648,35.5872077941895,139.956756591797,35.8024559020996&width=1063&height=330&srs=EPSG:4326&info_format=application/json&x=${px}&y=${py}";
+$turl = "http://www7151uf.sakura.ne.jp/geoserver/tky/wms?service=WMS&version=1.1.0&request=GetFeatureInfo&layers=tky:boronoi&query_layers=tky:boronoi&styles=&bbox=139.263046264648,35.5872077941895,139.956756591797,35.8024559020996&width=1063&height=330&srs=EPSG:4326&info_format=application/json&x=${px}&y=${py}";
 
 
   $timeout = "200";
